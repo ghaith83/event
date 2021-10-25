@@ -20,7 +20,6 @@ import de.tekup.summer.project.service.ServiceSalle;
 
 @RestController
 @RequestMapping("/api/salle")
-@JsonIgnoreType
 public class SalleController {
 	
 	private final ServiceSalle ServiceSalle;
@@ -46,5 +45,10 @@ public class SalleController {
     public ResponseEntity<salle> getProduitByName (@PathVariable("nom") String nom) {
     	salle salle = ServiceSalle.getsalleNom(nom);
         return new ResponseEntity<salle>(salle, HttpStatus.OK);
+    }
+    @GetMapping("/bycat/{catnom}")
+    public ResponseEntity<List<salle>>getsallebycat(@PathVariable("catnom")String catnom){
+    	List<salle>salles=ServiceSalle.getsallebycat(catnom);
+    	return new ResponseEntity<List<salle>>(salles,HttpStatus.OK);
     }
 }

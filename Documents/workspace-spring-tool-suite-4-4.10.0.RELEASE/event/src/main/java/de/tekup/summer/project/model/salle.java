@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -33,11 +35,26 @@ public class salle {
 	private int place;
 	@Size(min=100)
 	private int surface;
+	@ManyToOne	
+	private category category;
+	private String catname;
 	
 	
 
 
-	public salle(String nom, String ville, String adresse, String image, int place, int surface) {
+	
+
+	public salle() {
+		super();
+	}
+
+
+
+
+
+
+	public salle(String nom, String ville, String adresse, String image, int place, int surface,
+			de.tekup.summer.project.model.category category) {
 		super();
 		this.nom = nom;
 		this.ville = ville;
@@ -45,10 +62,8 @@ public class salle {
 		this.image = image;
 		this.place = place;
 		this.surface = surface;
-	}
-
-	public salle() {
-		super();
+		this.category = category;
+		this.catname=category.getNomcat();
 	}
 	
 	

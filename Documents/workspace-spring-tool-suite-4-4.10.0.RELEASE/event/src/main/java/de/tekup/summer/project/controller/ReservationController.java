@@ -2,6 +2,7 @@ package de.tekup.summer.project.controller;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,14 @@ public class ReservationController {
 	public ResponseEntity<reservation> addReservation(@RequestBody reservation res ,@PathVariable ("id") int id) throws Exception {
 		java.util.List<salle>salles=reposalle.findAll();
 	  salle	salle1=null;
-	  client client1=null;
-	   
+	  client client=null;
+	  
+	List<client>clients=RepoClient.findAll();
+	 int taille=clients.size();
+	   for (client client2 : clients) {
+		if (client2.getId()==taille)
+			client=client2;
+	}
 		for (salle salle : salles) {
 			if (salle.getIdsalle()==id)
 				salle1=salle;
@@ -53,6 +60,8 @@ public class ReservationController {
 		if(salle1==null) {
 			throw new Exception("salle with id "+id+" does not exist" );
 		}
+		
+		
 		
 		 Date dateREquest=res.getDatereservation();
 		 if(dateREquest.equals(null)) {
@@ -67,12 +76,14 @@ public class ReservationController {
 				else {
 					
 					res.setSalle(salle1);
+					res.setNomsalle(res.getSalle().getNom());
+					
 				}
 			
 			} 
 			
 		  
-		  reservation c=serviceres.addreservation(res, id);
+		  reservation c=serviceres.addreservation(res);
 		return new ResponseEntity<reservation>(c,HttpStatus.OK);
 		
 	}
@@ -89,6 +100,10 @@ public class ReservationController {
 		return new ResponseEntity<Integer>(size,HttpStatus.OK);
 	}
 		
-		
+	@GetMapping("/find/all")
+	public ResponseEntity<List<reservation>>reservationall(){
+		List<reservation> res=this.serviceres.findall();
+		return new ResponseEntity<>(res,HttpStatus.OK);
+	}
 	
 }

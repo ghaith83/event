@@ -3,6 +3,8 @@ package de.tekup.summer.project.controller;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
-
+import de.tekup.summer.project.model.category;
 import de.tekup.summer.project.model.client;
-
+import de.tekup.summer.project.repository.CategoryRepository;
 import de.tekup.summer.project.service.ServiceClient;
 
 
@@ -31,10 +33,6 @@ public class ClientController {
 	private final ServiceClient Service;
 	
 	
-	
-
-
-
 	public ClientController(ServiceClient clientrSer) {
 		super();
 		Service = clientrSer;

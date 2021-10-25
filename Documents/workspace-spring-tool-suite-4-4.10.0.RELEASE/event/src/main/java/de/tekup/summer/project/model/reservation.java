@@ -1,10 +1,8 @@
 package de.tekup.summer.project.model;
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Column;
+import java.util.Date;
+
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -33,12 +31,10 @@ public class reservation {
 	private Date datereservation;
 	@OneToOne
 	private salle salle;
-	private int idsalle;
+	private String nomsalle;
 	@ManyToOne
-	  @JoinTable(name = "reservation_client",
-      joinColumns = @JoinColumn(name ="idresrvation"),
-      inverseJoinColumns = @JoinColumn(name = "idclient"))
 	private client client;
+
 	
 	
 	
@@ -62,12 +58,12 @@ public class reservation {
 
 
 
-	public reservation(Date datereservation, de.tekup.summer.project.model.salle salle, int idsalle,
+	public reservation(Date datereservation, de.tekup.summer.project.model.salle salle, String idsalle,
 			de.tekup.summer.project.model.client client) {
 		super();
 		this.datereservation = datereservation;
 		this.salle = salle;
-		this.idsalle = idsalle;
+		this.nomsalle = idsalle;
 		this.client = client;
 	}
 

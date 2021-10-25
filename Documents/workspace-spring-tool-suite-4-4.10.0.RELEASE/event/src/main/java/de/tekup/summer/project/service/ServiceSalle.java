@@ -5,8 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-
-
+import de.tekup.summer.project.model.category;
 import de.tekup.summer.project.model.salle;
 import de.tekup.summer.project.repository.SalleRepository;
 
@@ -38,6 +37,10 @@ public class ServiceSalle {
 			
 		}
 		return salleres;
+	}
+	
+	public List<salle> getsallebycat(String cat){
+		return repoSalle.findByallcat(cat);
 	}
 
 

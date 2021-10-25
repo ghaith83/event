@@ -35,9 +35,9 @@ public class ServiceReservation {
 		
 	}
 
-	public reservation addreservation(reservation res,int id) {
+	public reservation addreservation(reservation res) {
 		
-
+			
 		return repores.save(res);
 	}
 	public Optional<reservation> getReservationById(int id) {
@@ -45,5 +45,8 @@ public class ServiceReservation {
 	}
 	public int sizereservation() {
 		return repores.findAll().size();
+	}
+	public java.util.List<reservation>findall(){
+		return repores.findAll();
 	}
 }

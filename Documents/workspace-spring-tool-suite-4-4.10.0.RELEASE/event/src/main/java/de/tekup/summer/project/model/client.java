@@ -45,6 +45,7 @@ public class client {
 	private String ville;
 	@Size(min=3,max=23)
 	private String region;
+	
 	@OneToMany(mappedBy = "client",cascade = CascadeType.REMOVE)
 	private List<reservation> reserve;
 	
